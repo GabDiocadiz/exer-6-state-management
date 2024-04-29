@@ -19,7 +19,15 @@ class _MyCatalogState extends State<MyCatalog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("My Catalog")),
+        appBar: AppBar(
+          title: const Text(
+            "My Catalog",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          backgroundColor: const Color.fromARGB(255, 250, 128, 114),
+        ),
         body: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return ListTile(

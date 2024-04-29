@@ -10,13 +10,20 @@ class MyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("My Cart")),
+      appBar: AppBar(title: const Text(
+        "My Cart",
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 250, 128, 114),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           getItems(context),
           computeCost(),
-          const Divider(height: 4, color: Colors.black),
+          // const Divider(height: 4, color: Colors.black),
           Flexible(
             child: Center(
               child: Row(
@@ -42,7 +49,7 @@ class MyCart extends StatelessWidget {
           TextButton(
             child: const Text("Go back to Product Catalog"),
             onPressed: () {
-              Navigator.pushNamed(context, "/products");
+              Navigator.pop(context);
             },
           ),
         ],
@@ -70,7 +77,6 @@ class MyCart extends StatelessWidget {
                       onPressed: () {
                         productname = products[index].name;
                         context.read<ShoppingCart>().removeItem(productname);
-
                         if (products.isNotEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("$productname removed!"),

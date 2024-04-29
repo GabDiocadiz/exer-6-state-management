@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
         "/cart": (context) => const MyCart(),
         "/checkout": (context) => const Checkout(),
       },
-      home: const MyCatalog(),
     );
   }
 }

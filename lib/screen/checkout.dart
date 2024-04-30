@@ -9,13 +9,19 @@ class Checkout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Checkout"),
+        title: const Text(
+          "Checkout",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 250, 128, 114),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
+            padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Text(
               "Item Details",
               style: TextStyle(
@@ -24,6 +30,7 @@ class Checkout extends StatelessWidget {
               ),
             ),
           ),
+          const Divider(),
           Expanded(
             child: Center(
               child: Consumer<ShoppingCart>(
@@ -33,8 +40,19 @@ class Checkout extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final item = cart.cart[index];
                       return ListTile(
-                        title: Text(item.name),
-                        subtitle: Text("Quantity: ${item.quantity}"),
+                        title: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                item.name,
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text(
+                              "\$${item.price}",
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
@@ -42,8 +60,9 @@ class Checkout extends StatelessWidget {
               ),
             ),
           ),
+          const Divider(),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Consumer<ShoppingCart>(
               builder: (context, cart, child) {
                 return Text(
@@ -58,7 +77,6 @@ class Checkout extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              // Process the payment
               context.read<ShoppingCart>().removeAll();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -66,10 +84,11 @@ class Checkout extends StatelessWidget {
                   duration: Duration(seconds: 2),
                 ),
               );
+              Navigator.pop(context);
             },
             child: const Text("Pay Now!"),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           TextButton(
             onPressed: () {
               Navigator.pop(context);

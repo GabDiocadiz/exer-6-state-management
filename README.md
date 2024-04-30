@@ -10,3 +10,5 @@
 - 
 ## Challenges when developing the application
 - 
+## Video of the application
+https://github.com/GabDiocadiz/exer-6-state-management/raw/main/Exercise%206%20-%20State%20Management.mp4
